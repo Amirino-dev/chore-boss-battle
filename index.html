@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#17142b" />
+    <title>Chore Boss Battle</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark">✦</span><span>HOME QUEST</span></div>
+        <div class="player-level">
+          <div class="hero-head"><span id="hero-name-label">HERO</span><strong>LV <b id="level">1</b></strong></div>
+          <div class="hero-level-progress"><span id="level-progress-label">0 / 125 XP to level 2</span><div class="hero-xp-track"><span id="level-progress-fill"></span></div></div>
+          <span class="total-xp"><b id="header-xp">0</b> TOTAL XP</span>
+        </div>
+      </header>
+
+      <section id="welcome-screen" class="screen welcome-screen">
+        <div class="welcome-emblem">✦</div>
+        <div class="eyebrow">A PIXEL-POWERED HOME QUEST</div>
+        <h1>HOME<br /><span>QUEST</span></h1>
+        <p id="welcome-message" class="intro">Every hero starts somewhere. What should we call you?</p>
+        <form id="hero-name-form" class="hero-name-form">
+          <label for="hero-name-input">HERO NAME</label>
+          <input id="hero-name-input" name="heroName" type="text" maxlength="18" autocomplete="nickname" placeholder="Enter your name" required />
+          <button class="primary-button" type="submit">BEGIN YOUR QUEST <span>▶</span></button>
+        </form>
+        <button id="welcome-continue" class="primary-button hidden" type="button">CONTINUE TO HOME QUEST <span>▶</span></button>
+        <div class="save-note">Your hero name and game progress are saved on this device.</div>
+      </section>
+
+      <section id="home-screen" class="screen home-screen hidden">
+        <div class="eyebrow">YOUR NEXT CHALLENGE</div>
+        <h1>Ready to face<br /><span>the mess?</span></h1>
+        <p class="intro">Clear your chores. Beat the boss. Earn your next level.</p>
+
+        <article class="boss-card">
+          <div class="boss-copy">
+            <div class="boss-tag" id="menu-boss-tag">BOSS 01 · KITCHEN</div>
+            <h2 id="menu-boss-name">Grime Goblin</h2>
+            <p id="menu-boss-description">A tiny terror made of dishes and crumbs.</p>
+            <div class="boss-stats"><span id="menu-boss-hp">❤ 100 HP</span><span id="menu-boss-xp">✦ +70 XP</span></div>
+          </div>
+          <div class="boss-art" aria-label="Pixel-art green goblin boss" role="img">
+            <div class="goblin">👾</div><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span>
+          </div>
+        </article>
+        <div id="menu-enrage-badge" class="enrage-badge hidden"><span id="menu-enrage-icon"></span><span>ENRAGED THIS RUN · BONUS HP + XP</span></div>
+
+        <p class="run-note">Boss order is shuffled every run. Completed chores stay cleared for that boss.</p>
+        <button id="start-button" class="primary-button">START BATTLE <span>▶</span></button>
+        <div class="progress-strip"><span>BOSSES BEATEN <b id="streak">0</b></span><span>ACHIEVEMENTS <b id="achievement-count">0/11</b></span></div>
+        <div class="home-achievement-progress"><div><span>ACHIEVEMENT OVERVIEW</span><b id="achievement-summary-text">0 / 11 unlocked</b></div><div class="achievement-overview-track"><span id="achievement-overview-fill"></span></div></div>
+        <button id="achievements-button" class="text-button">VIEW ACHIEVEMENTS</button>
+        <div class="reward-setting">
+          <div class="reward-heading"><label>REWARD PATH</label><span id="reward-status">LEVEL 1 UNLOCKED</span></div>
+          <strong id="current-reward" class="reward-name">☕ Take a 5-minute break</strong>
+          <p id="reward-progress-label" class="reward-progress-label">0 / 125 XP to level 2</p>
+          <div class="reward-track"><span id="reward-progress-fill"></span></div>
+          <p class="next-reward-line">NEXT: <b id="next-reward">🥤 Enjoy your favorite drink</b></p>
+          <button id="rewards-button" class="text-button reward-path-button">VIEW ALL LEVEL REWARDS</button>
+          <small>These are personal treats you choose for yourself; the app does not provide them.</small>
+        </div>
+        <div class="save-note">Your progress is saved on this device</div>
+      </section>
+
+      <section id="battle-screen" class="screen battle-screen hidden" aria-live="polite">
+        <button id="back-button" class="back-button">← MENU</button>
+        <div class="battle-heading"><div class="eyebrow" id="battle-tag">BATTLE 01</div><h1 id="battle-boss-name">Grime Goblin</h1><div id="enrage-banner" class="enrage-banner hidden"><span id="enrage-banner-icon"></span><span id="enrage-banner-text"></span></div></div>
+        <div class="arena">
+          <div class="fighter"><div class="fighter-avatar hero-avatar">🧙</div><strong><span id="battle-hero-name">HERO</span> · LV <span id="battle-level">1</span></strong><div class="health-track"><span id="player-health" class="health-fill player-fill"></span></div><small><span id="player-hp">100</span> / 100 HP</small></div>
+          <div class="versus">VS</div>
+          <div class="fighter"><div id="battle-boss-avatar" class="fighter-avatar boss-avatar">👾</div><strong id="arena-boss-name">GRIME GOBLIN</strong><div class="health-track"><span id="boss-health" class="health-fill boss-fill"></span></div><small><span id="boss-hp">100</span> / <span id="boss-max-hp">100</span> HP</small></div>
+        </div>
+        <div class="battle-meta"><span>ROUND <b id="round-number">1</b></span><span>✦ <b id="battle-xp">0</b> XP</span></div>
+        <div id="achievement-toast" class="achievement-toast hidden" role="status"></div>
+        <article id="quest-card" class="quest-card">
+          <div class="quest-top"><span class="quest-label">YOUR CHORE</span><span id="timer" class="timer">00:30</span></div>
+          <h2 id="chore-name">Loading chore…</h2>
+          <p id="chore-description">Complete this task before time runs out.</p>
+          <div class="quest-bottom"><span id="chore-damage">BOSS DAMAGE · 25</span><span id="chore-category">KITCHEN</span></div>
+          <div class="timer-track"><span id="timer-fill"></span></div>
+          <div class="quest-actions"><button id="complete-button" class="primary-button">CHORE COMPLETE <span>✓</span></button><button id="skip-button" class="skip-button">SKIP TASK · TAKE DAMAGE</button></div>
+        </article>
+        <section id="result-panel" class="result-panel hidden" aria-live="assertive"></section>
+      </section>
+
+      <section id="achievements-screen" class="screen achievements-screen hidden">
+        <button id="achievements-back" class="back-button">← MENU</button>
+        <div class="eyebrow">YOUR TROPHY SHELF</div><h1>Achievements</h1>
+        <div id="achievement-list" class="achievement-list"></div>
+      </section>
+
+      <section id="rewards-screen" class="screen rewards-screen hidden">
+        <button id="rewards-back" class="back-button">← MENU</button>
+        <div class="eyebrow">YOUR PERSONAL MILESTONES</div><h1>Reward Path</h1>
+        <p class="intro">Each level unlocks a small treat you can choose to give yourself.</p>
+        <div id="reward-list" class="reward-list"></div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
